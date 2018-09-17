@@ -15,6 +15,14 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "synthetics": [
+        "dist/synthetics"
+      ],
+      "synthetics/*": [
+        "dist/synthetics/*"
+      ]
+    }
   }
 }

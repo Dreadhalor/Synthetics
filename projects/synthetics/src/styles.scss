@@ -1,0 +1,63 @@
+@import '~bootstrap/scss/bootstrap.scss';
+
+.full-height {
+  display: block;
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.flex-1 {
+  flex: 1;
+}
+.d-flex-row {
+  @extend .d-flex;
+  @extend .flex-row;
+  @extend .flex-nowrap;
+}
+.center-aligned-row {
+  @extend .d-flex;
+  @extend .flex-row;
+  @extend .flex-nowrap;
+  @extend .align-items-center;
+  line-height: 0px;
+}
+
+.simplebox {
+  outline: none;
+  //border: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.inner-mouseover-label {
+  display: none!important;
+  line-height: 0px!important;
+}
+.inner-mouseover-disappear {
+  display: block;
+}
+.has-inner-mouseover-label {
+  &:hover {
+    .inner-mouseover-label {
+      display: block!important;
+    }
+    .inner-mouseover-disappear {
+      display: none!important;
+    }
+  }
+}
+
+$cancel-color: red;
+.cancel-add-btn {
+  color: $cancel-color!important;
+  &:hover {
+    color: darken($cancel-color,20%)!important;
+  }
+}
+
+::placeholder {
+  //color: lighten(grey,0%)!important;
+  opacity: 1;
+}

@@ -7,8 +7,12 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "syn",
-      "schematics": {},
+      "prefix": "",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -23,9 +27,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/@fortawesome/fontawesome-free/js/all.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -110,6 +116,46 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "synthetics": {
+      "root": "projects/synthetics",
+      "sourceRoot": "projects/synthetics/src",
+      "projectType": "library",
+      "prefix": "syn",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/synthetics/tsconfig.lib.json",
+            "project": "projects/synthetics/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/synthetics/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/synthetics/src/test.ts",
+            "tsConfig": "projects/synthetics/tsconfig.spec.json",
+            "karmaConfig": "projects/synthetics/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/synthetics/tsconfig.lib.json",
+              "projects/synthetics/tsconfig.spec.json"
+            ],
             "exclude": [
               "**/node_modules/**"
             ]
